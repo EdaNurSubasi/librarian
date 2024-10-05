@@ -1,6 +1,4 @@
 import axios from 'axios'
-
-import Security from '../../utils/security'
 import {GenericError} from '../../models'
 
 const config = {

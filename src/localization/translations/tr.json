@@ -2,8 +2,8 @@
 	"title": "Kütüphaneci",
 	"generic": {},
 	"menu": {
-		"empty": "Boş",
-		"settings": "Ayarlar"
+		"users": "Kullanıcılar",
+		"books": "Kitaplar"
 	},
 	"api": {
 		"error": {

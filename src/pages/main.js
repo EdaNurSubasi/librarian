@@ -7,8 +7,9 @@ import {CssBaseline, AppBar, Toolbar, IconButton, Divider, ListItemButton, List,
 import MenuIcon from '@mui/icons-material/Menu'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
 import ChevronRightIcon from '@mui/icons-material/ChevronRight'
-import SettingsIcon from '@mui/icons-material/SettingsOutlined'
 import ListItemIcon from '@mui/icons-material/ExitToApp'
+import PeopleIcon from '@mui/icons-material/People'
+import MenuBookIcon from '@mui/icons-material/MenuBook'
 
 import {translate} from '../localization'
 
@@ -47,17 +48,17 @@ const useStyles = makeStyles(theme => ({
 function Menu({theme, onLinkDidClick}) {
 	const items = [
 		{
-			url: '/empty',
-			key: 'empty',
-			icon: SettingsIcon,
+			url: '/users',
+			key: 'users',
+			icon: PeopleIcon,
 		},
 		{
 			type: 'divider',
 		},
 		{
-			url: '/settings',
-			key: 'settings',
-			icon: SettingsIcon,
+			url: '/books',
+			key: 'books',
+			icon: MenuBookIcon,
 		},
 		{
 			type: 'divider',
@@ -79,7 +80,7 @@ function Menu({theme, onLinkDidClick}) {
 					return <Divider key={index} />
 				}
 				const current = i.url === path
-				console.log(current)
+
 				return (
 					<ListItemButton key={i.key} selected={current} onClick={e => handleListItemClick(e, i.url)}>
 						<ListItemIcon>

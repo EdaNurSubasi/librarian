@@ -14,8 +14,10 @@ export default RouteStack => {
 	return (
 		<div style={{display: 'flex', flex: 1, flexDirection: 'column', height: '100vh'}}>
 			<Routes>
-				<Route path="/" element={<MainPage />}></Route>
-				<Route path="/empty" element={<EmptyPage />}></Route>
+				<Route path="/" element={<MainPage />}>
+					<Route path="/users" element={<EmptyPage />}></Route>
+					<Route path="/books" element={<EmptyPage />}></Route>
+				</Route>
 			</Routes>
 		</div>
 	)

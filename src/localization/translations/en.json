@@ -1,8 +1,8 @@
 {
 	"title": "Librarian",
 	"menu": {
-		"empty": "Empty",
-		"settings": "Settings"
+		"users": "Users",
+		"books": "Books"
 	},
 	"generic": {}
 }
