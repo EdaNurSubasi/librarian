@@ -2,16 +2,10 @@ import React from 'react'
 import {makeStyles} from '@mui/styles'
 import {useDispatch} from 'react-redux'
 
-import Table from '@mui/material/Table'
-import TableBody from '@mui/material/TableBody'
-import TableCell from '@mui/material/TableCell'
-import TableContainer from '@mui/material/TableContainer'
-import TableHead from '@mui/material/TableHead'
-import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
-import {Avatar, Button, Grid, Stack, Typography} from '@mui/material'
-import {useLocation, useNavigate, useParams} from 'react-router-dom'
-import {BookCard, UserCard} from '../components'
+import {Avatar, Grid, Stack, Typography} from '@mui/material'
+import {useNavigate, useParams} from 'react-router-dom'
+import {UserBookCard} from '../components'
 
 const useStyles = makeStyles(theme => ({
 	container: {
@@ -26,7 +20,7 @@ const useStyles = makeStyles(theme => ({
 		flexDirection: 'row',
 		flex: 1,
 		height: '100%',
-		margin: 6,
+		margin: 100,
 	},
 	stackUser: {
 		flex: 1,
@@ -103,7 +97,7 @@ export const Page = () => {
 						<Grid container className={classes.grid}>
 							{user.books.present.map(book => (
 								<Grid item key={book.name} xs={12} sm={6} md={4} lg={3}>
-									<BookCard book={book} showActions={true} showRating={false} />
+									<UserBookCard book={book} showActions={true} showRating={false} />
 								</Grid>
 							))}
 						</Grid>
@@ -117,7 +111,7 @@ export const Page = () => {
 						<Grid container className={classes.grid}>
 							{user.books.past.map(book => (
 								<Grid item key={book.name} xs={12} sm={6} md={4} lg={3}>
-									<BookCard book={book} showActions={false} showRating={true} />
+									<UserBookCard book={book} showActions={false} showRating={true} />
 								</Grid>
 							))}
 						</Grid>

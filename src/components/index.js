@@ -6,6 +6,7 @@ import {default as List} from './list'
 import {default as ListItem} from './list-item'
 import {default as CircularProgress} from './progress-circular'
 import {default as UserCard} from './user-card'
+import {default as UserBookCard} from './user-book-card'
 import {default as BookCard} from './book-card'
 
-export {LoginForm, Error, Alert, Dialog, List, ListItem, CircularProgress, UserCard, BookCard}
+export {LoginForm, Error, Alert, Dialog, List, ListItem, CircularProgress, UserCard, UserBookCard, BookCard}
