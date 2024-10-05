@@ -1,18 +1,18 @@
 import {Entity} from './base'
-import {UserBooks} from '.'
-export class User extends Entity {
+
+export class Book extends Entity {
 	constructor() {
 		super()
 
 		this.name = ''
-		this.books = null
+		this.score = -1.0
 	}
 
 	encode() {
 		return {
 			id: this.id,
 			name: this.name,
-			books: this.books?.encode(),
+			books: this.score,
 		}
 	}
 
@@ -20,7 +20,6 @@ export class User extends Entity {
 		if (!json) return
 		super.decode(json)
 		this.name = json.name
-		this.books = new UserBooks()
-		this.books.decode()
+		this.score = json.score
 	}
 }

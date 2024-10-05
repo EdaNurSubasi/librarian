@@ -2,6 +2,7 @@
 	"title": "Kütüphaneci",
 	"generic": {},
 	"menu": {
+		"home": "Ana Sayfa",
 		"users": "Kullanıcılar",
 		"books": "Kitaplar"
 	},

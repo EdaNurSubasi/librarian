@@ -10,6 +10,7 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import ListItemIcon from '@mui/icons-material/ExitToApp'
 import PeopleIcon from '@mui/icons-material/People'
 import MenuBookIcon from '@mui/icons-material/MenuBook'
+import HomeIcon from '@mui/icons-material/Home'
 
 import {translate} from '../localization'
 
@@ -47,6 +48,14 @@ const useStyles = makeStyles(theme => ({
 
 function Menu({theme, onLinkDidClick}) {
 	const items = [
+		{
+			url: '/',
+			key: 'home',
+			icon: HomeIcon,
+		},
+		{
+			type: 'divider',
+		},
 		{
 			url: '/users',
 			key: 'users',

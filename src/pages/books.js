@@ -12,9 +12,6 @@ const useStyles = makeStyles(theme => ({
 	},
 	content: {
 		display: 'flex',
-
-		width: 420,
-		margin: 16,
 		flexDirection: 'column',
 	},
 	header: {
@@ -25,10 +22,14 @@ const useStyles = makeStyles(theme => ({
 	},
 }))
 
-export default Page => {
+export const Page = () => {
 	const classes = useStyles()
 
 	const dispatch = useDispatch()
 
-	return <div className={classes.container}>PAGE</div>
+	return (
+		<div className={classes.container}>
+			<div className={classes.content}>Books</div>
+		</div>
+	)
 }

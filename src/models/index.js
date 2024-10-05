@@ -1,9 +1,6 @@
-import {GenericError, Codes} from "./error"
-import {User, Types as UserType, Scopes as UserScope, Roles as UserRole} from "./user"
-import {Session} from "./session"
+import {GenericError, Codes} from './error'
+import {User} from './user'
+import {Book} from './book'
+import {UserBooks} from './user-books'
 
-export {
-    GenericError, Codes,
-    User, UserType, UserScope, UserRole,
-    Session
-}
+export {GenericError, Codes, User, Book, UserBooks}

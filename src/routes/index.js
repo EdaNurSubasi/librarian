@@ -4,7 +4,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import {IconButton} from '@mui/material'
 import RetryIcon from '@mui/icons-material/Replay'
 
-import {MainPage, EmptyPage} from '../pages'
+import {MainPage, HomePage, UsersPage, BooksPage} from '../pages'
 import {Dialog, Error} from '../components'
 
 export default RouteStack => {
@@ -15,8 +15,9 @@ export default RouteStack => {
 		<div style={{display: 'flex', flex: 1, flexDirection: 'column', height: '100vh'}}>
 			<Routes>
 				<Route path="/" element={<MainPage />}>
-					<Route path="/users" element={<EmptyPage />}></Route>
-					<Route path="/books" element={<EmptyPage />}></Route>
+					<Route path="/" element={<HomePage />} />
+					<Route path="/users" element={<UsersPage />} />
+					<Route path="/books" element={<BooksPage />} />
 				</Route>
 			</Routes>
 		</div>

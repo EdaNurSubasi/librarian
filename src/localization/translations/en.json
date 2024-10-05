@@ -1,6 +1,7 @@
 {
 	"title": "Librarian",
 	"menu": {
+		"home": "Home",
 		"users": "Users",
 		"books": "Books"
 	},
