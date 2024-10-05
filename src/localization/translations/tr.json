@@ -1,0 +1,14 @@
+{
+	"title": "Kütüphaneci",
+	"generic": {},
+	"menu": {
+		"empty": "Boş",
+		"settings": "Ayarlar"
+	},
+	"api": {
+		"error": {
+			"gateway": "gateway error happened Try again!",
+			"unknown": "Something went wrong!"
+		}
+	}
+}
