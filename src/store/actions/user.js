@@ -1,15 +1,33 @@
 import {createRequestActionCreators} from './utils'
 
 import {REQUEST, METHOD} from '../middlewares/request'
-import {createAction} from '@reduxjs/toolkit'
 
 export const creators = {
-	clear: {
-		error: createAction(`user/error/clear`),
-		data: {
-			registered: createAction(`user/data/registered/clear`),
-		},
-	},
+	users: createRequestActionCreators('users'),
+	user: createRequestActionCreators('users/:id'),
 }
 
-export const actions = {}
+export const actions = {
+	users: () => dispatch => {
+		dispatch(creators.users.begin())
+		dispatch({
+			[REQUEST]: {
+				types: [creators.users.success(), creators.users.fail()],
+				endpoint: `users`,
+				method: METHOD.get,
+			},
+		})
+	},
+	user: id => dispatch => {
+		dispatch(creators.user.begin())
+
+		dispatch({
+			[REQUEST]: {
+				types: [creators.product.success(), creators.product.fail()],
+				endpoint: `users/${id}`,
+				method: METHOD.get,
+				authorized: false,
+			},
+		})
+	},
+}

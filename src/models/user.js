@@ -5,22 +5,33 @@ export class User extends Entity {
 		super()
 
 		this.name = ''
-		this.books = null
+		this.address = ''
+		this.birthdate = new Date()
+		this.picture = ''
+		//this.books = null
 	}
 
 	encode() {
 		return {
 			id: this.id,
 			name: this.name,
-			books: this.books?.encode(),
+			address: this.address,
+			birthdate: this.birthdate,
+			picture: this.picture,
+			//books: this.books?.encode(),
 		}
 	}
 
 	decode(json) {
 		if (!json) return
 		super.decode(json)
+		console.log(json)
+		this.id = json.id
 		this.name = json.name
-		this.books = new UserBooks()
-		this.books.decode()
+		this.address = json.address
+		this.birthdate = json.birthdate
+		this.picture = json.picture
+		//this.books = new UserBooks()
+		//this.books.decode()
 	}
 }

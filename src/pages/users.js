@@ -1,17 +1,11 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {makeStyles} from '@mui/styles'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 
-import Table from '@mui/material/Table'
-import TableBody from '@mui/material/TableBody'
-import TableCell from '@mui/material/TableCell'
-import TableContainer from '@mui/material/TableContainer'
-import TableHead from '@mui/material/TableHead'
-import TableRow from '@mui/material/TableRow'
-import Paper from '@mui/material/Paper'
-import {Button, Grid} from '@mui/material'
+import {Grid, LinearProgress} from '@mui/material'
 import {useNavigate} from 'react-router-dom'
 import {UserCard} from '../components'
+import {UserActions} from '../store/actions'
 
 const useStyles = makeStyles(theme => ({
 	container: {
@@ -32,7 +26,18 @@ const useStyles = makeStyles(theme => ({
 
 export const Page = () => {
 	const navigate = useNavigate()
-	const users = [
+	const users = useSelector(state => state.user.users)
+	const [selected, setSelected] = useState([])
+
+	useEffect(() => {
+		console.log(users.data)
+		setSelected(users.data)
+	}, [users.data])
+
+	useEffect(() => {
+		dispatch(UserActions.users())
+	}, [])
+	const users_ = [
 		{
 			id: 2,
 			name: 'Enes Faruk Meniz',
@@ -66,13 +71,19 @@ export const Page = () => {
 	return (
 		<div className={classes.container}>
 			<div className={classes.content}>
-				<Grid container className={classes.grid}>
-					{users.map(user => (
-						<Grid item key={user.id} xs={12} sm={6} md={4} lg={3}>
-							<UserCard user={user} />
+				{!users.waiting ? (
+					<>
+						<Grid container className={classes.grid}>
+							{selected.map(user => (
+								<Grid item key={user.id} xs={12} sm={6} md={4} lg={3}>
+									<UserCard user={user} />
+								</Grid>
+							))}
 						</Grid>
-					))}
-				</Grid>
+					</>
+				) : (
+					<LinearProgress />
+				)}
 			</div>
 		</div>
 	)

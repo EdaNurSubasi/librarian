@@ -97,6 +97,8 @@ export default store => next => async action => {
 	let {metadata} = ra
 	let {headers} = ra
 
+	console.log(data)
+
 	console.log(`Requesting ${method} ${config.host}/${endpoint} with data ${JSON.stringify(data)}`)
 
 	if (!METHOD.hasOwnProperty(method)) {

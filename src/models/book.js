@@ -6,13 +6,19 @@ export class Book extends Entity {
 
 		this.name = ''
 		this.score = -1.0
+		this.publisheddate = new Date()
+		this.writername = ''
+		this.picture = ''
 	}
 
 	encode() {
 		return {
 			id: this.id,
 			name: this.name,
-			books: this.score,
+			score: this.score,
+			publisheddate: this.publisheddate,
+			writername: this.writername,
+			picture: this.picture,
 		}
 	}
 
@@ -21,5 +27,8 @@ export class Book extends Entity {
 		super.decode(json)
 		this.name = json.name
 		this.score = json.score
+		this.publisheddate = json.publisheddate
+		this.writername = json.writername
+		this.picture = json.picture
 	}
 }
