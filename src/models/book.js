@@ -6,6 +6,7 @@ export class Book extends Entity {
 
 		this.name = ''
 		this.score = -1.0
+		this.userscore = -1
 		this.publisheddate = new Date()
 		this.writername = ''
 		this.picture = ''
@@ -16,6 +17,7 @@ export class Book extends Entity {
 			id: this.id,
 			name: this.name,
 			score: this.score,
+			userscore: this.userscore,
 			publisheddate: this.publisheddate,
 			writername: this.writername,
 			picture: this.picture,
@@ -27,6 +29,7 @@ export class Book extends Entity {
 		super.decode(json)
 		this.name = json.name
 		this.score = json.score
+		this.userscore = json.userscore
 		this.publisheddate = json.publisheddate
 		this.writername = json.writername
 		this.picture = json.picture

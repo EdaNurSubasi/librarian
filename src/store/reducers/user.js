@@ -41,6 +41,26 @@ export const user = createReducer(
 					error: action.error,
 				}
 			})
+
+			.addCase(creators.user.begin, (state, action) => {
+				state.user.waiting = true
+			})
+			.addCase(creators.user.success, (state, action) => {
+				const user = new User()
+				user.decode(action.payload)
+				state.user = {
+					data: action.payload,
+					waiting: false,
+					error: null,
+				}
+			})
+			.addCase(creators.user.fail, (state, action) => {
+				state.user = {
+					data: state.user.data,
+					waiting: false,
+					error: action.error,
+				}
+			})
 	}
 )
 

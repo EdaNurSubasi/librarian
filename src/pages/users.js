@@ -37,28 +37,6 @@ export const Page = () => {
 	useEffect(() => {
 		dispatch(UserActions.users())
 	}, [])
-	const users_ = [
-		{
-			id: 2,
-			name: 'Enes Faruk Meniz',
-		},
-		{
-			id: 1,
-			name: 'Eray Aslan',
-		},
-		{
-			id: 4,
-			name: 'Kadir Mutlu',
-		},
-		{
-			id: 3,
-			name: 'Sefa Eren Şahin',
-		},
-		{
-			id: 5,
-			name: 'Eda Nur Subasi',
-		},
-	]
 
 	const columns = [
 		{field: 'id', headerName: 'ID', flex: 1},

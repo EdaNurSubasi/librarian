@@ -23,10 +23,9 @@ export const actions = {
 
 		dispatch({
 			[REQUEST]: {
-				types: [creators.product.success(), creators.product.fail()],
+				types: [creators.user.success(), creators.user.fail()],
 				endpoint: `users/${id}`,
 				method: METHOD.get,
-				authorized: false,
 			},
 		})
 	},

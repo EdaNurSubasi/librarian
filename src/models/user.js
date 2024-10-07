@@ -8,7 +8,7 @@ export class User extends Entity {
 		this.address = ''
 		this.birthdate = new Date()
 		this.picture = ''
-		//this.books = null
+		this.books = null
 	}
 
 	encode() {
@@ -18,20 +18,19 @@ export class User extends Entity {
 			address: this.address,
 			birthdate: this.birthdate,
 			picture: this.picture,
-			//books: this.books?.encode(),
+			books: this.books?.encode(),
 		}
 	}
 
 	decode(json) {
 		if (!json) return
 		super.decode(json)
-		console.log(json)
 		this.id = json.id
 		this.name = json.name
 		this.address = json.address
 		this.birthdate = json.birthdate
 		this.picture = json.picture
-		//this.books = new UserBooks()
-		//this.books.decode()
+		this.books = new UserBooks()
+		this.books.decode(json.books)
 	}
 }

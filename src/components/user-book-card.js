@@ -35,7 +35,7 @@ const UserBookCard = ({book, showActions, showRating}) => {
 	const navigate = useNavigate()
 
 	const handleReturnClick = () => {
-		console.log(book.id)
+		console.log('BOOK ' + book.score)
 	}
 
 	return (
@@ -47,7 +47,7 @@ const UserBookCard = ({book, showActions, showRating}) => {
 						{book.name}
 					</Typography>
 				</CardContent>
-				{!showRating && <Rating value={book.score} max={10} />}
+				{!showRating && <Rating value={book.userscore} max={10} />}
 
 				{showActions && (
 					<CardActions>
@@ -55,7 +55,7 @@ const UserBookCard = ({book, showActions, showRating}) => {
 					</CardActions>
 				)}
 
-				{showRating && <Rating value={book.score} readOnly max={10} sx={{margin: 2}} />}
+				{showRating && <Rating value={book.userscore} readOnly max={10} sx={{margin: 2}} />}
 			</Card>
 		</div>
 	)
