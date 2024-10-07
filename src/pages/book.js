@@ -1,9 +1,10 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {makeStyles} from '@mui/styles'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 
-import {Avatar, Button, Grid, Paper, Rating, Skeleton, Stack, Typography} from '@mui/material'
+import {Avatar, Button, Grid, LinearProgress, Paper, Rating, Skeleton, Stack, Typography} from '@mui/material'
 import {useNavigate, useParams} from 'react-router-dom'
+import {BookActions} from '../store/actions'
 
 const useStyles = makeStyles(theme => ({
 	container: {
@@ -40,41 +41,72 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export const Page = () => {
-	const navigate = useNavigate()
-
 	const classes = useStyles()
-
 	const dispatch = useDispatch()
-
 	const {id} = useParams()
 
-	const book = {
-		id: 2,
-		name: 'I, Robot',
-		score: '5.33',
-	}
+	const bookSelector = useSelector(state => state.book.book)
+	const bookIsAvailableSelector = useSelector(state => state.book.isAvailable)
+
+	const [book, setBook] = useState(null)
+	const [isAvailable, setIsAvailable] = useState(false)
+
+	useEffect(() => {
+		dispatch(BookActions.book(id))
+		dispatch(BookActions.isAvailable(id))
+	}, [id])
+
+	useEffect(() => {
+		setBook(bookSelector.data)
+	}, [bookSelector.data])
+
+	useEffect(() => {
+		console.log(bookIsAvailableSelector.data)
+		setIsAvailable(bookIsAvailableSelector.data)
+	}, [bookIsAvailableSelector.data])
 
 	return (
 		<div className={classes.container}>
 			<div className={classes.content}>
-				<Stack className={classes.stackImage} component={Paper} sx={{backgroundColor: 'aqua'}}>
-					<img alt={book.name} loading="lazy" src={book.image ? book.image : 'public/resources/images/profile.png'} />
-				</Stack>
+				{!bookSelector.waiting ? (
+					book ? (
+						<>
+							<Stack className={classes.stackImage} component={Paper} sx={{backgroundColor: 'aqua'}}>
+								<img alt={book.name} loading="lazy" src={book.image ? book.image : 'public/resources/images/profile.png'} />
+							</Stack>
 
-				<Stack className={classes.stackBook}>
-					<Paper elevation={5} sx={{backgroundColor: 'aqua'}}>
-						<Typography gutterBottom textAlign="center" variant="h3" component="div" fontWeight="bold">
-							{book.name}
-						</Typography>
-					</Paper>
-					<Stack className={classes.stackBookInfo} component={Paper} sx={{backgroundColor: 'aqua'}}>
-						<Skeleton width={500} />
-						<Rating value={book.score} readOnly max={10} sx={{margin: 2}} />
-						<Skeleton animation="wave" width={500} />
-						<Skeleton animation={false} width={500} />
-						<Button variant="contained">LEND TO USER</Button>
-					</Stack>
-				</Stack>
+							<Stack className={classes.stackBook}>
+								<Paper elevation={5} sx={{backgroundColor: 'aqua'}}>
+									<Typography gutterBottom textAlign="center" variant="h3" component="div" fontWeight="bold">
+										{book.name}
+									</Typography>
+								</Paper>
+								<Stack className={classes.stackBookInfo} component={Paper} sx={{backgroundColor: 'aqua'}}>
+									<Typography gutterBottom textAlign="center" variant="h6" component="div" fontWeight="bold">
+										{book.writername}
+									</Typography>
+									<Typography gutterBottom textAlign="center" variant="h6" component="div" fontWeight="bold">
+										{book.publisheddate.toLocaleDateString()}
+									</Typography>
+
+									<Rating value={book.score} readOnly max={10} sx={{margin: 2}} />
+									<Button variant="contained" disabled={!isAvailable}>
+										LEND TO USER
+									</Button>
+									{!isAvailable && (
+										<Typography gutterBottom textAlign="center" variant="subtitle2" component="div" fontWeight="bold">
+											BOOK IS LENT
+										</Typography>
+									)}
+								</Stack>
+							</Stack>
+						</>
+					) : (
+						<div>NO DATA</div>
+					)
+				) : (
+					<LinearProgress />
+				)}
 			</div>
 		</div>
 	)

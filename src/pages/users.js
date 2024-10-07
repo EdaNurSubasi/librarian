@@ -3,7 +3,6 @@ import {makeStyles} from '@mui/styles'
 import {useDispatch, useSelector} from 'react-redux'
 
 import {Grid, LinearProgress} from '@mui/material'
-import {useNavigate} from 'react-router-dom'
 import {UserCard} from '../components'
 import {UserActions} from '../store/actions'
 
@@ -25,40 +24,30 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export const Page = () => {
-	const navigate = useNavigate()
-	const users = useSelector(state => state.user.users)
-	const [selected, setSelected] = useState([])
+	const classes = useStyles()
+	const dispatch = useDispatch()
+	const usersSelector = useSelector(state => state.user.users)
+	const [users, setUsers] = useState([])
 
 	useEffect(() => {
-		console.log(users.data)
-		setSelected(users.data)
-	}, [users.data])
+		setUsers(usersSelector.data)
+	}, [usersSelector.data])
 
 	useEffect(() => {
 		dispatch(UserActions.users())
 	}, [])
 
-	const columns = [
-		{field: 'id', headerName: 'ID', flex: 1},
-		{field: 'name', headerName: 'Name', flex: 1},
-		{field: 'detail', headerName: 'Detail', flex: 1},
-	]
-	const classes = useStyles()
-
-	const dispatch = useDispatch()
 	return (
 		<div className={classes.container}>
 			<div className={classes.content}>
-				{!users.waiting ? (
-					<>
-						<Grid container className={classes.grid}>
-							{selected.map(user => (
-								<Grid item key={user.id} xs={12} sm={6} md={4} lg={3}>
-									<UserCard user={user} />
-								</Grid>
-							))}
-						</Grid>
-					</>
+				{!usersSelector.waiting ? (
+					<Grid container className={classes.grid}>
+						{users.map(user => (
+							<Grid item key={user.id} xs={12} sm={6} md={4} lg={3}>
+								<UserCard user={user} />
+							</Grid>
+						))}
+					</Grid>
 				) : (
 					<LinearProgress />
 				)}

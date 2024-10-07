@@ -28,9 +28,9 @@ export class Book extends Entity {
 		if (!json) return
 		super.decode(json)
 		this.name = json.name
-		this.score = json.score
-		this.userscore = json.userscore
-		this.publisheddate = json.publisheddate
+		this.score = json?.score
+		this.userscore = json?.userscore
+		this.publisheddate = new Date(json.publisheddate)
 		this.writername = json.writername
 		this.picture = json.picture
 	}

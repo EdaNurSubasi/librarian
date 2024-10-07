@@ -29,7 +29,7 @@ export const user = createReducer(
 					return user
 				})
 				state.users = {
-					data: action.payload,
+					data: data,
 					waiting: false,
 					error: null,
 				}
@@ -49,7 +49,7 @@ export const user = createReducer(
 				const user = new User()
 				user.decode(action.payload)
 				state.user = {
-					data: action.payload,
+					data: user,
 					waiting: false,
 					error: null,
 				}

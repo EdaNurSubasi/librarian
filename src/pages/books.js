@@ -1,8 +1,9 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {makeStyles} from '@mui/styles'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {BookCard} from '../components'
 import {Grid} from '@mui/material'
+import {BookActions} from '../store/actions'
 
 const useStyles = makeStyles(theme => ({
 	container: {
@@ -22,32 +23,19 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export const Page = () => {
-	const books = [
-		{
-			id: 4,
-			name: '1984',
-		},
-		{
-			id: 5,
-			name: 'Brave New World',
-		},
-		{
-			id: 3,
-			name: 'Dune',
-		},
-		{
-			id: 2,
-			name: 'I, Robot',
-		},
-		{
-			id: 1,
-			name: "The Hitchhiker's Guide to the Galaxy",
-		},
-	]
-
 	const classes = useStyles()
-
 	const dispatch = useDispatch()
+
+	const bookSelector = useSelector(state => state.book.books)
+	const [books, setBooks] = useState([])
+
+	useEffect(() => {
+		setBooks(bookSelector.data)
+	}, [bookSelector.data])
+
+	useEffect(() => {
+		dispatch(BookActions.books())
+	}, [])
 
 	return (
 		<div className={classes.container}>

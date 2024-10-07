@@ -11,7 +11,6 @@ export class UserBooks extends Entity {
 
 	encode() {
 		return {
-			id: this.id,
 			past: this.past.map(b => b?.encode()),
 			present: this.present.map(b => b?.encode()),
 		}
