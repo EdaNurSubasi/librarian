@@ -54,6 +54,8 @@ export const Page = () => {
 	const userSelector = useSelector(state => state.user.user)
 	const [user, setUser] = useState(null)
 
+	const returnBookSelector = useSelector(state => state.user.returnBook)
+
 	useEffect(() => {
 		dispatch(UserActions.user(id))
 	}, [id])
@@ -61,6 +63,10 @@ export const Page = () => {
 	useEffect(() => {
 		setUser(userSelector.data)
 	}, [userSelector.data])
+
+	const handleReturnBookClick = (userId, bookId, score) => {
+		dispatch(UserActions.returnBook(userId, bookId, score))
+	}
 
 	return (
 		<div className={classes.container}>
@@ -87,7 +93,13 @@ export const Page = () => {
 											user.books.present &&
 											user.books.present.map(book => (
 												<Grid item key={book.name} xs={12} sm={6} md={4} lg={3}>
-													<UserBookCard book={book} showActions={true} showRating={false} />
+													<UserBookCard
+														user={user}
+														book={book}
+														showActions={true}
+														showRating={false}
+														handleReturnBookClick={handleReturnBookClick}
+													/>
 												</Grid>
 											))}
 									</Grid>

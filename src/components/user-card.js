@@ -31,21 +31,13 @@ const useStyles = makeStyles(theme => ({
 	},
 }))
 
-const UserCard = ({user, onUserClicked}) => {
+const UserCard = ({user, handleClick}) => {
 	const dispatch = useDispatch()
 
 	const style = useStyles()
-	const navigate = useNavigate()
-
 	const handleDetailClick = () => {
-		navigate(`${user.id}`)
+		handleClick(user.id)
 	}
-
-	const handleAddCartClick = () => {
-		// dispatch(CartActions.store(product, 1))
-		// onProductAddClicked()
-	}
-
 	return (
 		<div className={style.container}>
 			<Card className={style.card} elevation={4}>

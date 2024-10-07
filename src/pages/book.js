@@ -4,7 +4,9 @@ import {useDispatch, useSelector} from 'react-redux'
 
 import {Avatar, Button, Grid, LinearProgress, Paper, Rating, Skeleton, Stack, Typography} from '@mui/material'
 import {useNavigate, useParams} from 'react-router-dom'
-import {BookActions} from '../store/actions'
+import {BookActions, UserActions} from '../store/actions'
+import {Dialog, UserList} from '../components'
+import {UsersPage} from '.'
 
 const useStyles = makeStyles(theme => ({
 	container: {
@@ -45,15 +47,37 @@ export const Page = () => {
 	const dispatch = useDispatch()
 	const {id} = useParams()
 
+	const usersSelector = useSelector(state => state.user.users)
+	const borrowBookSelector = useSelector(state => state.user.borrowBook)
 	const bookSelector = useSelector(state => state.book.book)
 	const bookIsAvailableSelector = useSelector(state => state.book.isAvailable)
 
 	const [book, setBook] = useState(null)
 	const [isAvailable, setIsAvailable] = useState(false)
+	const [open, setOpen] = React.useState(false)
+
+	const handleOnClick = () => {
+		setOpen(true)
+	}
+	const handleOnClose = () => {
+		setOpen(false)
+	}
+
+	const handleClick = userId => {
+		dispatch(UserActions.borrowBook(userId, book.id))
+		setOpen(false)
+	}
+
+	useEffect(() => {
+		if (borrowBookSelector.data) {
+			setIsAvailable(!borrowBookSelector.data.stillpresent)
+		}
+	}, [borrowBookSelector.data])
 
 	useEffect(() => {
 		dispatch(BookActions.book(id))
 		dispatch(BookActions.isAvailable(id))
+		dispatch(UserActions.users())
 	}, [id])
 
 	useEffect(() => {
@@ -90,7 +114,7 @@ export const Page = () => {
 									</Typography>
 
 									<Rating value={book.score} readOnly max={10} sx={{margin: 2}} />
-									<Button variant="contained" disabled={!isAvailable}>
+									<Button variant="contained" disabled={!isAvailable} onClick={handleOnClick}>
 										LEND TO USER
 									</Button>
 									{!isAvailable && (
@@ -100,6 +124,11 @@ export const Page = () => {
 									)}
 								</Stack>
 							</Stack>
+							<Dialog
+								open={open}
+								content={<UserList users={usersSelector.data} classes={classes} handleClick={handleClick} />}
+								title={'User Selection'}
+								onClose={handleOnClose}></Dialog>
 						</>
 					) : (
 						<div>NO DATA</div>

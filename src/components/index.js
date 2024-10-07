@@ -8,5 +8,6 @@ import {default as CircularProgress} from './progress-circular'
 import {default as UserCard} from './user-card'
 import {default as UserBookCard} from './user-book-card'
 import {default as BookCard} from './book-card'
+import {default as UserList} from './user-list'
 
-export {LoginForm, Error, Alert, Dialog, List, ListItem, CircularProgress, UserCard, UserBookCard, BookCard}
+export {LoginForm, Error, Alert, Dialog, List, ListItem, CircularProgress, UserCard, UserBookCard, BookCard, UserList}

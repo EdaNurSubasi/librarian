@@ -5,7 +5,8 @@ import {useNavigate} from 'react-router-dom'
 import {useDispatch} from 'react-redux'
 
 import {translate} from '../localization'
-import {CartActions} from '../store/actions'
+import {CartActions, UserActions} from '../store/actions'
+import {useEffect, useState} from 'react'
 
 const useStyles = makeStyles(theme => ({
 	container: {
@@ -28,14 +29,20 @@ const useStyles = makeStyles(theme => ({
 	},
 }))
 
-const UserBookCard = ({book, showActions, showRating}) => {
+const UserBookCard = ({user, book, showActions, showRating, handleReturnBookClick}) => {
 	const dispatch = useDispatch()
 
 	const style = useStyles()
 	const navigate = useNavigate()
 
+	const [score, setScore] = useState(0)
+
+	const handleRatingOnChange = (e, v) => {
+		setScore(v)
+	}
+
 	const handleReturnClick = () => {
-		console.log('BOOK ' + book.score)
+		handleReturnBookClick(user.id, book.id, {score: score})
 	}
 
 	return (
@@ -47,7 +54,7 @@ const UserBookCard = ({book, showActions, showRating}) => {
 						{book.name}
 					</Typography>
 				</CardContent>
-				{!showRating && <Rating value={book.userscore} max={10} />}
+				{!showRating && <Rating onChange={handleRatingOnChange} value={score} max={10} />}
 
 				{showActions && (
 					<CardActions>

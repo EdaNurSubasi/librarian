@@ -15,6 +15,16 @@ export const user = createReducer(
 			waiting: false,
 			error: null,
 		},
+		returnBook: {
+			data: false,
+			waiting: false,
+			error: null,
+		},
+		borrowBook: {
+			data: null,
+			waiting: false,
+			error: null,
+		},
 	},
 	builder => {
 		builder
@@ -57,6 +67,47 @@ export const user = createReducer(
 			.addCase(creators.user.fail, (state, action) => {
 				state.user = {
 					data: state.user.data,
+					waiting: false,
+					error: action.error,
+				}
+			})
+
+			.addCase(creators.returnBook.begin, (state, action) => {
+				state.returnBook.waiting = true
+			})
+			.addCase(creators.returnBook.success, (state, action) => {
+				console.log(state.user.data)
+				const booktoreturn = state.user.data.books.present.filter(element => element.id === action.metadata.bookId).at(0)
+				booktoreturn.userscore = action.metadata.score
+				state.user.data.books.present = state.user.data.books.present.filter(element => element.id !== action.metadata.bookId)
+				state.user.data.books.past.push(booktoreturn)
+				state.returnBook = {
+					data: action.payload,
+					waiting: false,
+					error: null,
+				}
+			})
+			.addCase(creators.returnBook.fail, (state, action) => {
+				state.returnBook = {
+					data: state.returnBook.data,
+					waiting: false,
+					error: action.error,
+				}
+			})
+
+			.addCase(creators.borrowBook.begin, (state, action) => {
+				state.borrowBook.waiting = true
+			})
+			.addCase(creators.borrowBook.success, (state, action) => {
+				state.borrowBook = {
+					data: action.payload,
+					waiting: false,
+					error: null,
+				}
+			})
+			.addCase(creators.borrowBook.fail, (state, action) => {
+				state.borrowBook = {
+					data: state.borrowBook.data,
 					waiting: false,
 					error: action.error,
 				}
