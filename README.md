@@ -6,12 +6,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Project installation steps, explained down below.
 
-> NOTE: Git and NPM / Yarn must be installed on your system.
+> NOTE: Git and Yarn must be installed on your system.
 
 ```
   $ git clone <git@github.com:EdaNurSubasi/librarian.git> OR <https://github.com/EdaNurSubasi/librarian.git>
   $ cd librarian
-  $ npm install --force OR yarn install
+  $ yarn install
 ```
 
 ## How To Configure Project
@@ -30,7 +30,7 @@ In the '.env' file, there are some configurations will be found.
 In the project directory, you can run:
 
 ```
-  $ npm run start OR yarn start
+  $ yarn start
 ```
 
 > NOTE: Project will start on
