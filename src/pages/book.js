@@ -7,6 +7,7 @@ import {useNavigate, useParams} from 'react-router-dom'
 import {BookActions, UserActions} from '../store/actions'
 import {Dialog, UserList} from '../components'
 import {UsersPage} from '.'
+import {translate} from '../localization'
 
 const useStyles = makeStyles(theme => ({
 	container: {
@@ -115,11 +116,11 @@ export const Page = () => {
 
 									<Rating value={book.score} readOnly max={10} sx={{margin: 2}} />
 									<Button variant="contained" disabled={!isAvailable} onClick={handleOnClick}>
-										LEND TO USER
+										{translate.string('book.lend')}
 									</Button>
 									{!isAvailable && (
 										<Typography gutterBottom textAlign="center" variant="subtitle2" component="div" fontWeight="bold">
-											BOOK IS LENT
+											{translate.string('book.not.available')}
 										</Typography>
 									)}
 								</Stack>
@@ -131,7 +132,9 @@ export const Page = () => {
 								onClose={handleOnClose}></Dialog>
 						</>
 					) : (
-						<div>NO DATA</div>
+						<Typography gutterBottom textAlign="center" variant="h5" component="div" fontWeight="bold">
+							{translate.string('generic.not.found')}
+						</Typography>
 					)
 				) : (
 					<LinearProgress />

@@ -7,6 +7,7 @@ import {Avatar, Grid, LinearProgress, Stack, Typography} from '@mui/material'
 import {useParams} from 'react-router-dom'
 import {UserBookCard} from '../components'
 import {UserActions} from '../store/actions'
+import {translate} from '../localization'
 
 const useStyles = makeStyles(theme => ({
 	container: {
@@ -84,7 +85,7 @@ export const Page = () => {
 							<Stack className={classes.stackBook}>
 								<Paper elevation={5} sx={{backgroundColor: 'aqua'}}>
 									<Typography gutterBottom textAlign="center" variant="h5" component="div" fontWeight="bold">
-										Present
+										{translate.string('user.present.book.title')}
 									</Typography>
 								</Paper>
 								<Stack className={classes.present} component={Paper}>
@@ -106,7 +107,7 @@ export const Page = () => {
 								</Stack>
 								<Paper elevation={5} sx={{backgroundColor: 'aqua'}}>
 									<Typography gutterBottom textAlign="center" variant="h5" component="div" fontWeight="bold">
-										Past
+										{translate.string('user.past.book.title')}
 									</Typography>
 								</Paper>
 								<Stack className={classes.past} component={Paper}>
@@ -123,7 +124,9 @@ export const Page = () => {
 							</Stack>
 						</>
 					) : (
-						<div>NO DATA</div>
+						<Typography gutterBottom textAlign="center" variant="h5" component="div" fontWeight="bold">
+							{translate.string('generic.not.found')}
+						</Typography>
 					)
 				) : (
 					<LinearProgress />

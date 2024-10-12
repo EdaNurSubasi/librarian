@@ -5,5 +5,39 @@
 		"users": "Users",
 		"books": "Books"
 	},
-	"generic": {}
+	"home": {
+		"info": {
+			"book": "List books of this library!",
+			"user": "List users of this library!"
+		}
+	},
+	"user": {
+		"present": {
+			"book": {
+				"title": "Owned Books"
+			}
+		},
+		"past": {
+			"book": {
+				"title": "Returned Books"
+			}
+		}
+	},
+	"book": {
+		"lend": "Lend to User",
+		"not": {
+			"available": "Book is not available for lending to user."
+		}
+	},
+	"generic": {
+		"not": {
+			"found": "Found anything to show."
+		}
+	},
+	"api": {
+		"error": {
+			"gateway": "gateway error happened Try again!",
+			"unknown": "Something went wrong!"
+		}
+	}
 }

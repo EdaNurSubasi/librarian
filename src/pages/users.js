@@ -46,18 +46,7 @@ export const Page = () => {
 	return (
 		<div className={classes.container}>
 			<div className={classes.content}>
-				{!usersSelector.waiting ? (
-					<UserList users={users} classes={classes} handleClick={handleClick} />
-				) : (
-					// <Grid container className={classes.grid}>
-					// 	{users.map(user => (
-					// 		<Grid item key={user.id} xs={12} sm={6} md={4} lg={3}>
-					// 			<UserCard user={user} />
-					// 		</Grid>
-					// 	))}
-					// </Grid>
-					<LinearProgress />
-				)}
+				{!usersSelector.waiting ? <UserList users={users} classes={classes} handleClick={handleClick} /> : <LinearProgress />}
 			</div>
 		</div>
 	)

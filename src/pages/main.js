@@ -2,7 +2,7 @@ import {useState} from 'react'
 import {useLocation, Outlet, useNavigate} from 'react-router-dom'
 
 import {makeStyles, useTheme} from '@mui/styles'
-import {CssBaseline, AppBar, Toolbar, IconButton, Divider, ListItemButton, List, ListItemText, Drawer} from '@mui/material'
+import {CssBaseline, AppBar, Toolbar, IconButton, Divider, ListItemButton, List, ListItemText, Drawer, Typography} from '@mui/material'
 
 import MenuIcon from '@mui/icons-material/Menu'
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
@@ -11,8 +11,10 @@ import ListItemIcon from '@mui/icons-material/ExitToApp'
 import PeopleIcon from '@mui/icons-material/People'
 import MenuBookIcon from '@mui/icons-material/MenuBook'
 import HomeIcon from '@mui/icons-material/Home'
+import LanguageIcon from '@mui/icons-material/Language'
 
 import {translate} from '../localization'
+import {Config} from '../config'
 
 const useStyles = makeStyles(theme => ({
 	root: {
@@ -105,6 +107,7 @@ function Menu({theme, onLinkDidClick}) {
 
 export default function Page({children}) {
 	const classes = useStyles()
+	const navigate = useNavigate()
 
 	const [open, setOpen] = useState(false)
 
@@ -118,13 +121,31 @@ export default function Page({children}) {
 		setOpen(false)
 	}
 
+	const handleTitleClick = () => {
+		navigate(`/`)
+	}
+
+	const handleLanguageClick = () => {
+		const language = Config.language
+		console.log('CONFIG WILL CHANGED... ' + language)
+		const direction = Config.direction
+
+		Config.language = language == 'tr' ? 'en' : 'tr'
+	}
+
 	return (
 		<div className={classes.root}>
 			<CssBaseline />
 			<AppBar position="fixed">
 				<Toolbar>
-					<IconButton color="inherit" onClick={handleDrawerOpen} edge="start">
+					<IconButton size="large" edge="start" color="inherit" sx={{paddingLeft: 2, cursor: 'pointer'}} onClick={handleDrawerOpen}>
 						<MenuIcon />
+					</IconButton>
+					<Typography onClick={handleTitleClick} variant="h6" component="div" sx={{flexGrow: 1, paddingLeft: 2, cursor: 'pointer'}}>
+						{translate.string('title').toUpperCase()}
+					</Typography>
+					<IconButton size="large" edge="start" color="inherit" sx={{mr: 2}} onClick={handleLanguageClick}>
+						<LanguageIcon />
 					</IconButton>
 				</Toolbar>
 			</AppBar>

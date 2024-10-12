@@ -6,6 +6,9 @@ import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
 import CardActionArea from '@mui/material/CardActionArea'
+import {translate} from '../localization'
+import LibraryBooksIcon from '@mui/icons-material/LibraryBooks'
+import RecentActorsIcon from '@mui/icons-material/RecentActors'
 const useStyles = makeStyles(theme => ({
 	container: {
 		display: 'flex',
@@ -18,9 +21,9 @@ const useStyles = makeStyles(theme => ({
 		flexDirection: 'row',
 	},
 	card: {
-		width: 250,
+		// width: 250,
 		height: 100,
-		margin: 5,
+		// margin: 5,
 	},
 }))
 
@@ -35,11 +38,12 @@ export const Page = () => {
 				<Card className={classes.card} variant="outlined">
 					<CardActionArea href="/books">
 						<CardContent>
-							<Typography gutterBottom variant="h5" component="div">
-								Books
+							<Typography gutterBottom variant="h5" component="div" textAlign="center">
+								<LibraryBooksIcon disabled fontSize="large" sx={{marginRight: 2}} />
+								{translate.string('menu.books')}
 							</Typography>
 							<Typography variant="body2" sx={{color: 'text.secondary'}}>
-								List books of this library!
+								{translate.string('home.info.book')}
 							</Typography>
 						</CardContent>
 					</CardActionArea>
@@ -48,11 +52,12 @@ export const Page = () => {
 				<Card className={classes.card} variant="outlined">
 					<CardActionArea href="/users">
 						<CardContent>
-							<Typography gutterBottom variant="h5" component="div">
-								Users
+							<Typography gutterBottom variant="h5" component="div" textAlign="center">
+								<RecentActorsIcon fontSize="large" sx={{marginRight: 2}} />
+								{translate.string('menu.users')}
 							</Typography>
 							<Typography variant="body2" sx={{color: 'text.secondary'}}>
-								List users of this library!
+								{translate.string('home.info.user')}
 							</Typography>
 						</CardContent>
 					</CardActionArea>

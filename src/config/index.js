@@ -1,9 +1,3 @@
-import {
-    Provider as ConfigProvider,
-    Context as ConfigContext
-} from "./provider"
+import {Provider as ConfigProvider, Context as ConfigContext, config as Config} from './provider'
 
-export {
-    ConfigProvider,
-    ConfigContext
-}
+export {ConfigProvider, ConfigContext, Config}

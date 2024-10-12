@@ -1,15 +1,43 @@
 {
 	"title": "Kütüphaneci",
-	"generic": {},
+	"generic": {
+		"not": {
+			"found": "Herhangi bir veri bulunamadı."
+		}
+	},
 	"menu": {
 		"home": "Ana Sayfa",
 		"users": "Kullanıcılar",
 		"books": "Kitaplar"
 	},
+	"home": {
+		"info": {
+			"book": "Kütüphanede kayıtlı kitapları listele!",
+			"user": "Kütüphanede kayıtlı kullanıcıları listele!"
+		}
+	},
+	"user": {
+		"present": {
+			"book": {
+				"title": "Elde Bulunan Kitaplar"
+			}
+		},
+		"past": {
+			"book": {
+				"title": "Teslim Edilmiş Kitaplar"
+			}
+		}
+	},
+	"book": {
+		"lend": "Kullanıcıya kitabı emanet ver.",
+		"not": {
+			"available": "Kitap emanet olarak alınmak için müsati değildir."
+		}
+	},
 	"api": {
 		"error": {
-			"gateway": "gateway error happened Try again!",
-			"unknown": "Something went wrong!"
+			"gateway": "Hata oluştu. Lütfen tekrar deneyiniz!",
+			"unknown": "Bir şeyler yanlış gitti!"
 		}
 	}
 }

@@ -52,4 +52,4 @@ const Provider = ({children}) => {
 	return <Context.Provider value={{...configState, setLanguage, setTextDirection, setThemeMode}}>{children}</Context.Provider>
 }
 
-export {Context, Provider}
+export {Context, Provider, config}

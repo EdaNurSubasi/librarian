@@ -1,32 +1,32 @@
-import I18n from "i18n-js"
-import React, {useContext} from "react"
+import I18n from 'i18n-js'
+import React, {useContext, useEffect} from 'react'
 
-import en from "./translations/en"
-import tr from "./translations/tr"
+import en from './translations/en'
+import tr from './translations/tr'
 
-import "moment/locale/tr"
-import {ConfigContext} from "../config"
-
+import 'moment/locale/tr'
+import {ConfigContext} from '../config'
 
 I18n.fallbacks = true
 I18n.translations = {
-    en,
-    tr
+	en,
+	tr,
 }
 
 const Context = React.createContext(null)
-Context.displayName = "LocalizationContext"
+Context.displayName = 'LocalizationContext'
 
-const Provider = ({ children }) => {
-    const { language } = useContext(ConfigContext)
+const Provider = ({children}) => {
+	const {language} = useContext(ConfigContext)
 
-    I18n.locale = language
+	I18n.locale = language
 
-    return (
-        <Context.Provider value={{}}>
-            {children}
-        </Context.Provider>
-    );
-};
+	useEffect(() => {
+		console.log('CHANGE LANGUAGE')
+		I18n.locale = language
+	}, [language])
 
-export { Context, Provider }
+	return <Context.Provider value={{}}>{children}</Context.Provider>
+}
+
+export {Context, Provider}
